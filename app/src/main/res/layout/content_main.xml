@@ -41,8 +41,8 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button"
+        android:text="@string/view_objects_text"
+        android:id="@+id/view"
         android:layout_below="@+id/randomize"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
