@@ -17,8 +17,35 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
-        android:id="@+id/textView2"
-        android:layout_alignParentTop="true"
+        android:id="@+id/result"
+        android:layout_above="@+id/randomize"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp" />
+        android:layout_marginBottom="80dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:gravity="center_vertical|center_horizontal"
+        android:textSize="50dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/randomize_text"
+        android:id="@+id/randomize"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorAccent"
+        android:textColor="@color/white"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Button"
+        android:id="@+id/button"
+        android:layout_below="@+id/randomize"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>

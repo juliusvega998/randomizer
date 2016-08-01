@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Randomyzer</string>
     <string name="title_activity_main">Randomyzer</string>
+    <string name="randomize_text">RANDOMIZE!</string>
 </resources>
