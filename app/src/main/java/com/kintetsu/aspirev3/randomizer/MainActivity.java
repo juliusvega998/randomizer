@@ -1,5 +1,8 @@
 package com.kintetsu.aspirev3.randomizer;
 
+import android.annotation.TargetApi;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
@@ -13,6 +16,8 @@ import android.widget.TextView;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
+    public static final int NUMBER_OF_SPINS = 100;
+    public static final int TIME_SPIN = 50;
     private final String[] mList = {
             "Kuya Mark",
             "Alyssa",
@@ -29,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         final Button randomize = (Button) findViewById(R.id.randomize);
+        final Button viewObjects = (Button) findViewById(R.id.view);
         final TextView result = (TextView) findViewById(R.id.result);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -42,10 +48,13 @@ public class MainActivity extends AppCompatActivity {
 
 
         randomize.setOnClickListener(new View.OnClickListener() {
+            @TargetApi(Build.VERSION_CODES.M)
             @Override
             public void onClick(View view) {
                 final Random r = new Random();
-                for(int i=0; i<100; i++) {
+                randomize.setEnabled(false);
+                randomize.setBackgroundColor(getResources().getColor(R.color.grey));
+                for (int i = 0; i < NUMBER_OF_SPINS; i++) {
                     final int index = r.nextInt(mList.length);
 
                     new Handler().postDelayed(new Runnable() {
@@ -53,8 +62,24 @@ public class MainActivity extends AppCompatActivity {
                         public void run() {
                             result.setText(mList[index]);
                         }
-                    }, 50*i);
+                    }, TIME_SPIN * i);
                 }
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        randomize.setEnabled(true);
+                        randomize.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                    }
+                }, TIME_SPIN * NUMBER_OF_SPINS);
+            }
+        });
+
+        viewObjects.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, ViewActivity.class);
+                startActivity(i);
             }
         });
     }
