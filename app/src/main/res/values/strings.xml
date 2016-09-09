@@ -5,4 +5,6 @@
     <string name="view_objects_text">View Objects</string>
     <string name="init_string">---</string>
     <string name="title_activity_view">ViewActivity</string>
+    <string name="add_new">Add a new string</string>
+    <string name="name_placeholder">Enter name</string>
 </resources>

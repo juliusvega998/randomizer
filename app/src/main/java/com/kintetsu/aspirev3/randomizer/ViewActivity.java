@@ -6,17 +6,9 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-
-import java.util.Arrays;
+import android.widget.Toast;
 
 public class ViewActivity extends AppCompatActivity {
-    private final String[] mList = {
-            "Kuya Mark",
-            "Alyssa",
-            "Aleli",
-            "Nur",
-            "Julius"
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +19,14 @@ public class ViewActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         RecyclerView rv = (RecyclerView) findViewById(R.id.object_view);
-        ObjectAdapter oa = new ObjectAdapter(Arrays.asList(mList));
+        ObjectAdapter oa = new ObjectAdapter(MainActivity.mList);
         RecyclerView.LayoutManager lm = new LinearLayoutManager(getApplicationContext());
         rv.setLayoutManager(lm);
         rv.setItemAnimator(new DefaultItemAnimator());
         rv.setAdapter(oa);
+
+        if(MainActivity.mList.size() <= 0) {
+            Toast.makeText(this, "No strings added yet!", Toast.LENGTH_SHORT).show();
+        }
     }
 }
