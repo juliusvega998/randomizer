@@ -53,10 +53,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 final Random r = new Random();
+
                 randomize.setEnabled(false);
                 randomize.setBackgroundColor(useColor(R.color.colorAccent));
                 result.setTextColor(useColor(R.color.grey));
-                //randomize.setBackgroundColor(getResources().getColor(R.color.grey));
+
                 for (int i = 0; i < NUMBER_OF_SPINS; i++) {
                     final int index = i%mList.length;
                     final int delay = TIME_SPIN * i;
@@ -77,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
 
                         randomize.setEnabled(true);
                         randomize.setBackgroundColor(useColor(R.color.colorAccent));
-                        //randomize.setBackgroundColor(getResources().getColor(R.color.colorAccent));
                     }
                 }, TIME_SPIN * NUMBER_OF_SPINS);
             }
