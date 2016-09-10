@@ -40,8 +40,6 @@ public class MainActivity extends AppCompatActivity {
         final Button viewObjects = (Button) findViewById(R.id.view);
         final TextView result = (TextView) findViewById(R.id.result);
 
-        //populateList();
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(mList.size()>0) {
                     final Random r = new Random();
+                    int delay;
 
                     randomize.setEnabled(false);
                     randomize.setBackgroundColor(useColor(R.color.colorAccent));
@@ -104,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
                     for (int i = 0; i < NUMBER_OF_SPINS; i++) {
                         final int index = i % mList.size();
-                        final int delay = TIME_SPIN * i;
+                        delay = TIME_SPIN * i;
 
                         new Handler().postDelayed(new Runnable() {
                             @Override
@@ -140,14 +139,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-    }
-
-    private void populateList() {
-        mList.add("Aleli");
-        mList.add("Alyssa");
-        mList.add("Julius");
-        mList.add("Kuya Mark");
-        mList.add("Nur");
     }
 
     private int useColor(int id) {

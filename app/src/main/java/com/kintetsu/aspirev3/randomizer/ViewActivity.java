@@ -19,7 +19,7 @@ public class ViewActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         RecyclerView rv = (RecyclerView) findViewById(R.id.object_view);
-        ObjectAdapter oa = new ObjectAdapter(MainActivity.mList);
+        ObjectAdapter oa = new ObjectAdapter(MainActivity.mList, ViewActivity.this);
         RecyclerView.LayoutManager lm = new LinearLayoutManager(getApplicationContext());
         rv.setLayoutManager(lm);
         rv.setItemAnimator(new DefaultItemAnimator());
