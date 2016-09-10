@@ -12,9 +12,11 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
+    //TOTAL_TIME = NUMBER_OF_SPINS * TIME_SPIN
     public static final int NUMBER_OF_SPINS = 20;
     public static final int TIME_SPIN = 50;
     public static final ArrayList<String> mList = new ArrayList<>();
@@ -45,11 +48,24 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 final AlertDialog dialog;
+
                 final EditText etName = new EditText(MainActivity.this);
+                final FrameLayout container = new FrameLayout(MainActivity.this);
+                final FrameLayout.LayoutParams params = new  FrameLayout.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT
+                );
+
+                params.leftMargin = 50;
+                params.rightMargin = 50;
+
+                etName.setLayoutParams(params);
                 etName.setHint("Enter name");
 
-                builder.setMessage("Add new string");
-                builder.setView(etName);
+                container.addView(etName);
+
+                builder.setTitle("Add new string");
+                builder.setView(container);
                 builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
