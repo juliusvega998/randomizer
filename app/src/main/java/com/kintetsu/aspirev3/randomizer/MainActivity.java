@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         final Button randomize = (Button) findViewById(R.id.randomize);
         final Button viewObjects = (Button) findViewById(R.id.view);
         final TextView result = (TextView) findViewById(R.id.result);
+        final TextView result2 = (TextView) findViewById(R.id.result2);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -94,41 +95,58 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(mList.size()>0) {
-                    final Random r = new Random();
-                    int delay;
-
-                    randomize.setEnabled(false);
-                    randomize.setBackgroundColor(useColor(R.color.colorAccent));
-                    result.setTextColor(useColor(R.color.grey));
-
-                    for (int i = 0; i < NUMBER_OF_SPINS; i++) {
-                        final int index = i % mList.size();
-                        delay = TIME_SPIN * i;
-
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                result.setText(mList.get(index));
-                            }
-                        }, delay);
-                    }
-
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            result.setText(mList.get(r.nextInt(mList.size())));
-                            result.setTextColor(useColor(R.color.black));
-
-                            randomize.setEnabled(true);
-                            randomize.setBackgroundColor(useColor(R.color.colorAccent));
-                        }
-                    }, TIME_SPIN * NUMBER_OF_SPINS);
+                    randomize();
                 } else {
                     Toast.makeText(
                             MainActivity.this,
                             "No string to randomize!",
                             Toast.LENGTH_SHORT).show();
                 }
+            }
+
+            public void randomize() {
+                final Random r = new Random();
+                final String p1 = mList.get(r.nextInt(mList.size()));
+                final String p2 = mList.get(r.nextInt(mList.size()));
+                int delay;
+
+                if(p1.equals(p2)) {
+                    randomize();
+                    return;
+                }
+
+                randomize.setEnabled(false);
+                randomize.setBackgroundColor(useColor(R.color.colorAccent));
+                result.setTextColor(useColor(R.color.grey));
+                result2.setTextColor(useColor(R.color.grey));
+
+                for (int i = 0; i < NUMBER_OF_SPINS; i++) {
+                    final int index1 = i % mList.size();
+                    final int index2 = (i + 1) % mList.size();
+                    delay = TIME_SPIN * i;
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            result.setText(mList.get(index1));
+                            result2.setText(mList.get(index2));
+                        }
+                    }, delay);
+                }
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        result.setText(p1);
+                        result.setTextColor(useColor(R.color.black));
+
+                        result2.setText(p2);
+                        result2.setTextColor(useColor(R.color.black));
+
+                        randomize.setEnabled(true);
+                        randomize.setBackgroundColor(useColor(R.color.colorAccent));
+                    }
+                }, TIME_SPIN * NUMBER_OF_SPINS);
             }
         });
 

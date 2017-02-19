@@ -20,7 +20,7 @@
         android:id="@+id/result"
         android:layout_above="@+id/randomize"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="85dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
         android:gravity="center_vertical|center_horizontal"
@@ -49,4 +49,19 @@
         android:layout_marginTop="20dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/init_string"
+        android:id="@+id/result2"
+        android:layout_above="@+id/randomize"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="25dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:gravity="center_vertical|center_horizontal"
+        android:textSize="50sp"
+        android:textColor="@color/grey" />
 </RelativeLayout>
